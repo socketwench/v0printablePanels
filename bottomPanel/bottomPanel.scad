@@ -36,9 +36,9 @@ module bottomPanel_noCenterCutout() {
             }
         }
 
-        hex_panel([213-13*2,213-13*2,3], 2, (213-13*2)/15, frame = 0, anchor = BOTTOM);
+        hex_panel([213-13*2,213-13*2,3], 3, (213-13*2)/12, frame = 0, anchor = BOTTOM);
 
-        hex_panel([213-13*2,213-13*2,.6], 1, (213-13*2)/60, frame = 0, anchor = BOTTOM);
+        hex_panel([213-13*2,213-13*2,1], 1.5, (213-13*2)/36, frame = 0, anchor = BOTTOM);
     }
 }
 
@@ -117,14 +117,14 @@ module bottomPanel_withCenterCutout() {
             bottomPanel_panelBoss();
             
             circleRepeat(radius=35.8, angles=[30,150,210,330])
-                cylinder(h=1.5, d1=3.8*2, d2=3.8, $fn=25);
+                cylinder(h=1, d1=3.8*2, d2=3.8, $fn=25);
         }
     }
 }
 
 module bottomPanel_topRight() {
     intersection() {
-        translate([0,2.4,0])
+        translate([0,3.2,0])
             cube([213/2,213/2,3]);
 
         bottomPanel_withCenterCutout();
@@ -134,7 +134,7 @@ module bottomPanel_topRight() {
 module bottomPanel_bottomRight() {
     intersection() {
         translate([0, -213/2,0])
-            cube([213/2,213/2+2.4,3]);
+            cube([213/2,213/2+3.2,3]);
 
         bottomPanel_withCenterCutout();
     }
@@ -142,7 +142,7 @@ module bottomPanel_bottomRight() {
 
 module bottomPanel_topLeft() {
     intersection() {
-        translate([213/-2,2.4,0])
+        translate([213/-2,3.2,0])
             cube([213/2,213/2,3]);
 
         bottomPanel_withCenterCutout();
@@ -152,7 +152,7 @@ module bottomPanel_topLeft() {
 module bottomPanel_bottomLeft() {
     intersection() {
         translate([213/-2,213/-2,0])
-            cube([213/2,213/2+2.4,3]);
+            cube([213/2,213/2+3.2,3]);
 
         bottomPanel_withCenterCutout();
     }
