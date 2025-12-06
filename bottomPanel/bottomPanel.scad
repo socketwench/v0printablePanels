@@ -1,27 +1,10 @@
 include <../BOSL2/std.scad>
 include <../BOSL2/walls.scad>
 include <../voronLogo/voronLogo.scad>
+include <../rectangles/rectangles.scad>
+include <../circles/circles.scad>
 
 Select = 0; // [0:Preview, 1:topRight, 2:bottomRight, 3:topLeft, 4:bottomLeft, 5:centerWithLogo, 6:centerBlank]
-
-module rectCycle(size, center=false) {
-    let(w=size[0], h=size[1]) {
-        translate([center ? w/-2 : 0, center ? h/-2 : 0]) {
-            for(x=[0:1:1]) {
-                for(y=[0:1:1]) {
-                    translate([x*w,y*h])
-                        children();
-                }
-            }
-        }
-    }
-}
-
-module circleRepeat(radius, angles=[]) {
-    for (theta=angles)
-        translate(polar_to_xy(radius,theta))
-            children();
-}
 
 module bottomPanel_noCenterCutout() {
     union() {
@@ -49,11 +32,11 @@ module bottomPanel_panelBoss(clearance=0) {
                 rotate([0,0,90])
                     difference() {
                         hexagon(d=90.2);
-                        hexagon(d=70.2+clearance);
+                        hexagon(d=70.2-clearance*2);
                     }
         
         circleRepeat(radius=35.8, angles=[30,150,210,330])
-                    circle(d=16+clearance, $fn=20);
+                    circle(d=16+clearance*2, $fn=20);
             }
                     
             circleRepeat(radius=35.8, angles=[30,150,210,330])
@@ -64,7 +47,7 @@ module bottomPanel_panelBoss(clearance=0) {
 
 module bottomPanel_centerScrewCutout() {
     union() {
-        linear_extrude(0.8)
+        linear_extrude(0.4)
             rotate([0,0,90])
                 hexagon(d=6.4);
         
@@ -98,7 +81,7 @@ module bottomPanel_center(voronLogo=true) {
         bottomPanel_panelBoss(0.2);
         
         circleRepeat(radius=35.8, angles=[30,150,210,330])
-            translate([0,0,2.21])
+            translate([0,0,2.61])
                 bottomPanel_centerScrewCutout();
     }
 }
@@ -159,15 +142,15 @@ module bottomPanel_bottomLeft() {
 }
 
 module bottomPanel_preview() {
-    translate([-1,-1,0])
+    //translate([-1,-1,0])
         bottomPanel_bottomLeft();
-    translate([1,1,0])
+    //translate([1,1,0])
         bottomPanel_topRight();
-    translate([1,-1,0])
+    //translate([1,-1,0])
         bottomPanel_bottomRight();
-    translate([-1,1,0])
+    //translate([-1,1,0])
         bottomPanel_topLeft();
-    translate([0,0,10])
+    //translate([0,0,10])
         bottomPanel_center();
 }
 
