@@ -127,7 +127,7 @@ module deckPanel_centerUpperBlank() {
     union() {
         linear_extrude(0.6) {
             rotate([0,0,90])
-                hexagon(d=78);
+                hexagon(d=79);
         }
         
         deckPanel_centerUpperFrame();
