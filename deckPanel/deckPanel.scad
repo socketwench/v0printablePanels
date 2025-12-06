@@ -41,48 +41,58 @@ module deckPanel_screwHoles() {
 }
 
 module deckPanel_panelBoss(clearance=0, holes=true) {
-    linear_extrude(1.2) {
-        difference() {
-            union() {
-                rotate([0,0,90])
-                    difference() {
-                        hexagon(d=110);
-                        hexagon(d=90-clearance*2);
-                    }
-        
-                    deckPanel_holesPattern()
-                        circle(d=13+clearance*2, $fn=20);
-
-            }
+    difference() {
+        linear_extrude(1.2) {
+            difference() {
+                union() {
+                    rotate([0,0,90])
+                        difference() {
+                            hexagon(d=110);
+                            hexagon(d=90-clearance*2);
+                        }
             
-            if (holes) {
-                deckPanel_screwHoles();
+                        deckPanel_holesPattern()
+                            circle(d=13+clearance*2, $fn=20);
+
+                }
+                
+                if (holes) {
+                    deckPanel_screwHoles();
+                }
             }
+        }
+    
+        if (holes) {        
+            deckPanel_holesPattern()
+                cylinder(h=1, d1=3.8*2, d2=3.8, $fn=25);
         }
     }
 }
 
 module deckPanel_singlePiece() {
-    difference() {
-        union() {
-            translate([209/-2, 172/-2,2.6/2])
-                hex_panel(deckPanel_points(), strut=3, spacing=(213-13*2)/12, h = 2.6, frame = 6);
+    union() {
+        difference() {
+            union() {
+                translate([209/-2, 172/-2,2.6/2])
+                    hex_panel(deckPanel_points(), strut=3, spacing=(213-13*2)/12, h = 2.6, frame = 6);
+                
+                 translate([209/-2, 172/-2,0.8/2])
+                    hex_panel(deckPanel_points(), strut=1.5, spacing=(213-13*2)/36, h = 0.8, frame = 6);
+                
+                linear_extrude(0.4)
+                    deckPanel_outline();
+            }
             
-             translate([209/-2, 172/-2,0.8/2])
-                hex_panel(deckPanel_points(), strut=1.5, spacing=(213-13*2)/36, h = 0.8, frame = 6);
-            
-            linear_extrude(0.4)
-                deckPanel_outline();
+            linear_extrude(2.6)
+                translate([0,25/2])
+                    rotate([0,0,90])
+                        hexagon(d=110);
         }
-        
-        linear_extrude(2.6)
-            translate([0,25/2])
-                rotate([0,0,90])
-                    hexagon(d=110);
-    }
 
-    translate([0,25/2])
-        deckPanel_panelBoss();
+        translate([0,25/2])
+            deckPanel_panelBoss();
+        
+    }
 }
 
 module deckPanel_centerLower() {
@@ -158,4 +168,4 @@ module deckPanel_topRight() {
 
         deckPanel_singlePiece();
     }
-}
+}            
