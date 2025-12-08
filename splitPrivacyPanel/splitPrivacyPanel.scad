@@ -58,7 +58,7 @@ module splitPrivacyPanel_centerBoss(screwHoles=true, clearance=0) {
                     }
                 
                 splitPrivacyPanel_centerHolePattern()
-                    circle(d=8-clearance*2, $fn=20);
+                    circle(d=8+clearance*2, $fn=20);
             }
             
             if (screwHoles) {
@@ -83,13 +83,13 @@ module splitPrivacyPanel_withCenterCutout(fillIn=false) {
     }
 }
 
-module splitPrivacyPanel_centerBlank() {
+module splitPrivacyPanel_centerBlank(clearance=0.4) {
     difference() {            
         linear_extrude(2.6)
             rotate([0,0,90])
-                hexagon(d=34);
+                hexagon(d=34-clearance);
 
-        splitPrivacyPanel_centerBoss(screwHoles=false, clearance=0.2);
+        splitPrivacyPanel_centerBoss(screwHoles=false, clearance=clearance);
         
         translate([0,0,2.6])
             splitPrivacyPanel_centerHolePattern()
