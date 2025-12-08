@@ -32,6 +32,14 @@ module voronLogo_hexShape() {
         hexagon(or=32.9);
 }
 
+module voronLogo_shape() {
+    union() {
+        voronLogo_stripeShapeLeft();
+        voronLogo_stripeShapeCenter();
+        voronLogo_stripeShapeRight();
+    }
+}
+
 module voronLogo_beveledStripes(height, bevel) {
     union () {
         hull() {
