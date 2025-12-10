@@ -62,7 +62,7 @@ module molex3pin_housing() {
 
 module molex3pin_portPanelCutout() {
     union() {
-        linear_extrude(2.6)
+        linear_extrude(2.61)
             molex3pin_housingOutline();
         
         translate([-19/2-4.8/2,0,0])
