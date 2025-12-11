@@ -90,11 +90,11 @@ module splitMidPanel2_singlePiece(w=230, h=170) {
         splitMidPanel2_molexCycle()
             molex3pin_portPanelCutout();
         
-        translate([-69/2,h/-2,0])
+        translate([-74/2,h/-2,0])
             linear_extrude(2.61)
                 m3_mountingHoleColumn(10, 6, 30);
 
-        translate([69/2,h/-2,0])
+        translate([74/2,h/-2,0])
             linear_extrude(2.61)
                 m3_mountingHoleColumn(10, 6, 30);
     }
