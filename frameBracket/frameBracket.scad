@@ -98,3 +98,32 @@ module frameBracket_withMagnets(h=3.2, d=6.2) {
             frameBracket_magnetPocket(h=h,d=d);
     }
 }
+
+module frameBracket_50mmCuttingGuide() {
+    union() {
+        rotate([0,0,90])
+            translate([15/2+3,-50,15/2+3]) {
+                translate([0,0,15/2-2.6/2])
+                    rotate([-90,0,0])
+                        beveledCube([2.6,2.6],0.4,1);
+                    
+                translate([-15/2+2.6/2,0,0])
+                    rotate([-90,0,0])
+                        beveledCube([2.6,2.6],0.4,1);
+                    
+                translate([0,0,-15/2+2.6/2])
+                    rotate([-90,0,0])
+                        beveledCube([2.6,2.6],0.4,1);
+                    
+                translate([15/2-2.6/2,0,0])
+                    rotate([-90,0,0])
+                        beveledCube([2.6,2.6],0.4,1);
+            }
+
+
+        difference() {
+            cube([53,18,18]);
+            translate([0,2.6,2.6]) cube([50,15.4,15.4]);
+        }
+    }
+}
