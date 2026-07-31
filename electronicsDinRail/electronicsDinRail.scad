@@ -1,6 +1,7 @@
 include <../BOSL2/std.scad>
 include <../BOSL2/screws.scad>
 
+Height=48;
 
 module electronicsDinRail_railCutout() {
     points = [
@@ -41,17 +42,17 @@ module electronicsDinRail_railCutout() {
 
 module electronicsDinRail_baseOutline() {
     difference() {
-        rect([42,48], rounding=3, $fn=15);
+        rect([42,Height], rounding=3, $fn=15);
 
-        translate([42/2-6,48/2-14/2])
+        translate([42/2-6,Height/2-14/2])
             rect([3.8,7.5], rounding=3.8/2, $fn=15);
 
-        translate([42/-2+6,48/2-14/2])
+        translate([42/-2+6,Height/2-14/2])
             rect([3.8,7.5], rounding=3.8/2, $fn=15);
 
-        rect([42-4*2,48-14*2], rounding=3, $fn=15);
+        rect([42-4*2,Height-14*2], rounding=3, $fn=15);
         
-        translate([0,48/-2+7])
+        translate([0,Height/-2+7])
             electronicsDinRail_railCutout();
     }
 }
@@ -85,6 +86,6 @@ module electronicsDinRail_dinHolder() {
 
 electronicsDinRail_base();
 
-translate([0,-48/2,6])
+translate([0,-Height/2,6])
     rotate([0,0,180])
         electronicsDinRail_dinHolder();
